@@ -1,0 +1,19 @@
+<h1>New Event:</h1>
+
+<p>Current User: <%= @user.email %></p>
+
+<%= form_with model: @event do |form| %>
+  <div>
+    <%= form.label :name, "Event Name:"%>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :start_date, "Start Date:" %>
+    <%= form.date_field :start_date %>
+  </div>
+  <div>
+    <%= form.label :location, "Location:"%>
+    <%= form.text_field :location %>
+  </div>
+  <%= form.submit %>
+<% end %>
