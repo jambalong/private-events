@@ -7,3 +7,13 @@
     </li>
   <% end %>
 </ul>
+
+<h2>List of Attended Events:</h2>
+
+<ul>
+  <% @user.attended_events.each do |event| %>
+    <li>
+      <%= event.name %>
+    </li>
+  <% end %>
+</ul>
