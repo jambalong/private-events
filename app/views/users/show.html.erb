@@ -12,19 +12,28 @@
 
 <% today = Date.today %>
 <p>Past Events:</p>
-<ul>
+<ul id="past-events">
   <% @user.attended_events.where("start_date < ?", today).each do |event| %>
-    <li>
-      <%= link_to event.name, event %>
-    </li>
+    <% attendance = event.attendances.find_by(attendee_id: @user.id) %>
+    <% if attendance %>
+      <li id="attendance_<%= attendance.id %>">
+        <%= link_to event.name, event %>
+        <%= button_to 'Leave Event', attendance_path(attendance), method: :delete, data: { turbo_confirm: "Are you sure you want to leave this event?" }, class: "leave-event-button" %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
+
 <p>Upcoming Events:</p>
-<ul>
+<ul id="upcoming-events">
   <% @user.attended_events.where("start_date >= ?", today).each do |event| %>
-    <li>
-      <%= link_to event.name, event %>
-    </li>
+    <% attendance = event.attendances.find_by(attendee_id: @user.id) %>
+    <% if attendance %>
+      <li id="attendance_<%= attendance.id %>">
+        <%= link_to event.name, event %>
+        <%= button_to 'Leave Event', attendance_path(attendance), method: :delete, data: { turbo_confirm: "Are you sure you want to leave this event?" }, class: "leave-event-button" %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 

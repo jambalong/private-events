@@ -11,4 +11,19 @@ class AttendancesController < ApplicationController
       redirect_to @event
     end
   end
+
+  def destroy
+    @attendance = Attendance.find(params[:id])
+
+    if @attendance.destroy
+      flash[:notice] = "You have succesfully left the event"
+    else
+      flash[:alert] = "There was a problem leaving the event"
+    end
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("attendance_#{@attendance.id}") }
+      format.html { redirect_to user_path(current_user) }
+    end
+  end
 end
