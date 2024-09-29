@@ -1,7 +1,16 @@
 <h1>Events Index!</h1>
 
+<p>Past events:</p>
 <ul>
-  <% @events.each do |event| %>
+  <% @events.past.each do |event| %>
+    <li>
+      <%= link_to event.name, event %>
+    </li>
+  <% end %>
+</ul>
+<p>Upcoming events:</p>
+<ul>
+  <% @events.upcoming.each do |event| %>
     <li>
       <%= link_to event.name, event %>
     </li>
