@@ -8,6 +8,26 @@ class EventsController < ApplicationController
     @attendance = Attendance.new
   end
 
+  def edit
+  end
+
+  def update
+    @event = Event.find(params[:id])
+
+    if @event.creator == current_user
+      if @event.update(event_params)
+        flash[:notice] = "Event successfully updated"
+        redirect_to @event
+      else
+        flash.now[:alert] = "There is a problem updating the event"
+        render :edit
+      end
+    else
+      flash[:alert] = "You are not the creator of this event"
+      redirect_to events_path
+    end
+  end
+
   def new
     @user = current_user
     @event = @user.events.build

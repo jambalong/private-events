@@ -5,6 +5,7 @@
     <div id="event_<%= event.id %>">
       <h3><%= link_to event.name, event %></h3>
       <% if event.creator == current_user %>
+        <%= link_to 'Edit Event', edit_event_path(event), class: "edit-event-button" %>
         <%= button_to 'Delete Event', event_path(event), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete-event-button" %>
       <% end %>
     </div>
