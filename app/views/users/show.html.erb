@@ -10,10 +10,28 @@
 
 <h2>List of Attended Events:</h2>
 
+<% today = Date.today %>
+<p>Past Events:</p>
 <ul>
-  <% @user.attended_events.each do |event| %>
+  <% @user.attended_events.where("start_date < ?", today).each do |event| %>
     <li>
       <%= event.name %>
     </li>
   <% end %>
 </ul>
+<p>Upcoming Events:</p>
+<ul>
+  <% @user.attended_events.where("start_date < ?", today).each do |event| %>
+    <li>
+      <%= event.name %>
+    </li>
+  <% end %>
+</ul>
+<ul>
+  <% @user.attended_events.where("start_date >= ?", today).each do |event| %>
+    <li>
+      <%= event.name %>
+    </li>
+  <% end %>
+</ul>
+
