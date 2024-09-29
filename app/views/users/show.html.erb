@@ -2,9 +2,12 @@
 
 <ul>
   <% @events.each do |event| %>
-    <li>
-      <%= link_to event.name, event %>
-    </li>
+    <div id="event_<%= event.id %>">
+      <h3><%= link_to event.name, event %></h3>
+      <% if event.creator == current_user %>
+        <%= button_to 'Delete Event', event_path(event), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete-event-button" %>
+      <% end %>
+    </div>
   <% end %>
 </ul>
 

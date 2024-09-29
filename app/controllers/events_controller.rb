@@ -24,6 +24,22 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+
+    if @event.creator == current_user
+      @event.destroy
+      flash[:notice] = "Event has been destroyed"
+    else
+      flash[:alert] = "You cannot destroy this event"
+    end
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("event_#{@event.id}") }
+      format.html { redirect_to user_path(current_user) }
+    end
+  end
+
   private
 
   def event_params
