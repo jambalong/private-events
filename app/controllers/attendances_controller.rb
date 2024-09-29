@@ -8,7 +8,7 @@ class AttendancesController < ApplicationController
       redirect_to @event
     else
       flash[:notice] = "There was a problem joining the event"
-      render "events/show"
+      redirect_to @event
     end
   end
 end

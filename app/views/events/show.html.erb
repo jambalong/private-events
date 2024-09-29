@@ -11,7 +11,11 @@
   <% end %>
 </ul>
 
-<%= form_with(model: @attendance, url: attendances_path, local: true) do |form| %>
-  <%= form.hidden_field :event_id, value: @event.id %>
-  <%= form.submit "Attend" %>
+<% if @event.attendees.include?(current_user) %>
+  <p>You are already attending this event :D</p>
+<% else %> 
+  <%= form_with(model: @attendance, url: attendances_path, local: true) do |form| %>
+    <%= form.hidden_field :event_id, value: @event.id %>
+    <%= form.submit "Attend" %>
+  <% end %>
 <% end %>
