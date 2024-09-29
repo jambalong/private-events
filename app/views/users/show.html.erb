@@ -21,13 +21,6 @@
 </ul>
 <p>Upcoming Events:</p>
 <ul>
-  <% @user.attended_events.where("start_date < ?", today).each do |event| %>
-    <li>
-      <%= event.name %>
-    </li>
-  <% end %>
-</ul>
-<ul>
   <% @user.attended_events.where("start_date >= ?", today).each do |event| %>
     <li>
       <%= event.name %>
