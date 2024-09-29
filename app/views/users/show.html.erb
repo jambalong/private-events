@@ -3,7 +3,7 @@
 <ul>
   <% @events.each do |event| %>
     <li>
-      <%= event.name %>
+      <%= link_to event.name, event %>
     </li>
   <% end %>
 </ul>
@@ -15,7 +15,7 @@
 <ul>
   <% @user.attended_events.where("start_date < ?", today).each do |event| %>
     <li>
-      <%= event.name %>
+      <%= link_to event.name, event %>
     </li>
   <% end %>
 </ul>
@@ -23,7 +23,7 @@
 <ul>
   <% @user.attended_events.where("start_date >= ?", today).each do |event| %>
     <li>
-      <%= event.name %>
+      <%= link_to event.name, event %>
     </li>
   <% end %>
 </ul>
