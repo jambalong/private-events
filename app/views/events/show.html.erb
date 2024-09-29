@@ -2,6 +2,14 @@
 <p>Event Creator: <%= @event.creator.email %></p>
 <p>Start Date: <%= @event.start_date %></p>
 <p>Location: <%= @event.location %></p>
+<p>Current Attendees:</p>
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <li>
+      <%= attendee.email %>
+    </li>
+  <% end %>
+</ul>
 
 <%= form_with(model: @attendance, url: attendances_path, local: true) do |form| %>
   <%= form.hidden_field :event_id, value: @event.id %>
