@@ -53,7 +53,7 @@ By the end of this project, you will be able to:
 1. Clone the repository:
 
    ```bash
-   git clone [<repository-url>](https://github.com/jambalong/private-events.git)
+   git clone https://github.com/jambalong/private-events.git
    ```
 
 2. Navigate to the project directory:
